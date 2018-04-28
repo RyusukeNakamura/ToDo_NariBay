@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
     tools:context="com.lifeistech.android.todo_naribay.MainActivity">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/fabNew"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="add"
@@ -19,12 +20,14 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:descendantFocusability="blocksDescendants">
 
         <ListView
             android:id="@+id/listView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
         </ListView>
     </LinearLayout>

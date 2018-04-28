@@ -22,7 +22,6 @@ public class New_Activity extends AppCompatActivity {
 
         titleText=(EditText)findViewById(R.id.titleText);
         contentText=(EditText)findViewById(R.id.contentText);
-        fab2=(FloatingActionButton)findViewById(R.id.fab2);
          pref=getSharedPreferences("pref_memo",MODE_PRIVATE);
 
 
@@ -37,7 +36,7 @@ public class New_Activity extends AppCompatActivity {
 
         editor=pref.edit();
         editor.putString("titleText"+n,title);
-        editor.putString(title,content);
+        editor.putString("contentText"+n,content);
         editor.commit();
 
         setResult(RESULT_OK);

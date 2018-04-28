@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import static com.lifeistech.android.todo_naribay.Detail_Activity.REQUEST_CODE_EDIT;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
 
     static final int REQUEST_CODE_NEW = 1;
-    static final int REQUEST_COD_DETAIL=2;
+    static final int REQUEST_CODE_DETAIL=2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(getApplicationContext(),Detail_Activity.class);
-                intent.putExtra("id",i);
-                startActivityForResult(intent,REQUEST_COD_DETAIL);
+                editor.putInt("clickedId",i);
+                editor.commit();
+                startActivityForResult(intent,REQUEST_CODE_DETAIL);
+
             }
         });
 
@@ -82,12 +86,21 @@ public class MainActivity extends AppCompatActivity {
             int size = arrayList.size();
             Log.d("addList", "arraySize=" + size);
             arrayList.add(new Card(pref.getString("titleText" + size, null)));
-
             cardAdapter = new CardAdapter(this, R.layout.card, arrayList);
             listView.setAdapter(cardAdapter);
             //新しくaddされたsizeを保存
             editor.putInt("array_size",arrayList.size());
             editor.commit();
         }
+
+        if(requestCode==REQUEST_CODE_DETAIL&&resultCode==RESULT_OK){
+            int id=pref.getInt("clickedId",100);
+            Log.d("requestCodeEdit","id="+id);
+
+
+            arrayList.set(id,new Card(pref.getString("titleText"+id,null)));
+            cardAdapter = new CardAdapter(this, R.layout.card, arrayList);
+            listView.setAdapter(cardAdapter);}
+
     }
 }

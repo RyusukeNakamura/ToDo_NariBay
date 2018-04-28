@@ -28,8 +28,8 @@ public class CardAdapter extends ArrayAdapter<Card> {
     CheckBox checkBox;
     TextView textView;
 
-    public CardAdapter(Context content, int layoutResourceId, ArrayList<Card> objects) {
-        super(content, layoutResourceId, objects);
+    public CardAdapter(Context context, int layoutResourceId, ArrayList<Card> objects) {
+        super(context, layoutResourceId, objects);
         arrayList = objects;
     }
     @Override

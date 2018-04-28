@@ -7,7 +7,7 @@
     tools:context="com.lifeistech.android.todo_naribay.New_Activity">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab2"
+        android:id="@+id/fabDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="newA"
