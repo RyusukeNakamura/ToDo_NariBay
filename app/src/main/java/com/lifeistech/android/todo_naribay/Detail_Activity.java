@@ -20,38 +20,41 @@ public class Detail_Activity extends AppCompatActivity {
     SharedPreferences pref;
     ListView oneListView;
     int id;
-    int flag=0;
+    int flag = 0;
 
-    public static final int REQUEST_CODE_EDIT=3;
+    public static final int REQUEST_CODE_EDIT = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_);
-        pref=getSharedPreferences("pref_memo",MODE_PRIVATE);
-        id=pref.getInt("clickedId",100);
-        oneListView=(ListView)findViewById(R.id.oneListView);
-        contentTextView=(TextView)findViewById(R.id.contentTextView);
-        String title=pref.getString("titleText"+id,null);
+        pref = getSharedPreferences("pref_memo", MODE_PRIVATE);
+        id = pref.getInt("clickedId", 100);
 
-        ArrayList<Card> al=new ArrayList<Card>();
+        oneListView = (ListView) findViewById(R.id.oneListView);
+        contentTextView = (TextView) findViewById(R.id.contentTextView);
+
+        //id番目のみリスト表示
+        String title = pref.getString("titleText" + id, null);
+        ArrayList<Card> al = new ArrayList<Card>();
         al.add(new Card(title));
-        CardAdapter adapter=new CardAdapter(this,R.layout.card,al);
+        CardAdapter adapter = new CardAdapter(this, R.layout.card, al);
         oneListView.setAdapter(adapter);
-        contentTextView.setText(pref.getString("contentText"+id,null));
+
+        //content表示
+        contentTextView.setText(pref.getString("contentText" + id, null));
 
     }
-    public void edit(View v){
-        Intent intent=new Intent(this,Edit_Activity.class);
-        startActivityForResult(intent,REQUEST_CODE_EDIT);
+
+    public void edit(View v) {
+        Intent intent = new Intent(this, Edit_Activity.class);
+        startActivityForResult(intent, REQUEST_CODE_EDIT);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == REQUEST_CODE_EDIT && resultCode == RESULT_OK) {
-            Log.d("detail","id to main");
-
             setResult(RESULT_OK);
             finish();
         }

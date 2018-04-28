@@ -37,6 +37,7 @@ public class Edit_Activity extends AppCompatActivity {
     public void doneEdit(View v){
         String t=editTitle.getText().toString();
         String c=editContent.getText().toString();
+
         //編集内容保存
         editor.putString("titleText"+id,t);
         editor.putString("contentText"+id,c);

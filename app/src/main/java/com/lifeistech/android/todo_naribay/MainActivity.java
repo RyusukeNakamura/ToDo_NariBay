@@ -85,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE_NEW && resultCode == RESULT_OK) {
             int size = arrayList.size();
             Log.d("addList", "arraySize=" + size);
+            //新しいリストを追加
             arrayList.add(new Card(pref.getString("titleText" + size, null)));
             cardAdapter = new CardAdapter(this, R.layout.card, arrayList);
             listView.setAdapter(cardAdapter);
-            //新しくaddされたsizeを保存
+
+            //新しくaddされた後のsizeを保存
             editor.putInt("array_size",arrayList.size());
             editor.commit();
         }
@@ -97,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
             int id=pref.getInt("clickedId",100);
             Log.d("requestCodeEdit","id="+id);
 
-
+            //id番目の変更をリストにset
             arrayList.set(id,new Card(pref.getString("titleText"+id,null)));
             cardAdapter = new CardAdapter(this, R.layout.card, arrayList);
             listView.setAdapter(cardAdapter);}
